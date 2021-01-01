@@ -4,24 +4,42 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.UUID;
+
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class BeerDto {
+
+    @Null
     private UUID id;
+    @Null
     private Integer version;
-    private String beerName;
-    private BeerStyleEnum beerStyle;
-    private Long upc;
+
+    @Null
     private OffsetDateTime insertedDate;
+    @Null
     private OffsetDateTime lastModifiedDate;
+
+    @NotBlank
+    private String beerName;
+
+    @NotNull
+    private BeerStyleEnum beerStyle;
+    @NotNull
+    @Positive
+    private Long upc;
+
+
     private Integer quantityInHand;
+
+    @PositiveOrZero
+    @NotNull
     private BigDecimal price;
 }

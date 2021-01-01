@@ -50,7 +50,7 @@ public class BeerLoader implements CommandLineRunner {
                     .upc(123213215L)
                     .build());
         }
-        log.info("Count of BeerRepo "+beerRepository.count());
+        log.error("Count of BeerRepo "+beerRepository.count());
 
     }
 }
