@@ -2,18 +2,16 @@ package com.azharuworld.msscbeerservice.bootstrap;
 
 import com.azharuworld.msscbeerservice.domain.Beer;
 import com.azharuworld.msscbeerservice.repositories.BeerRepository;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 
 /**
  * * Created by AzSyed on 12/29/2020
  */
-@Component
-@Slf4j
+//@Component
+//@Slf4j
 public class BeerLoader implements CommandLineRunner {
 
     private final BeerRepository beerRepository;
@@ -63,7 +61,7 @@ public class BeerLoader implements CommandLineRunner {
                     .upc(BEER_UPC_3)
                     .build());
         }
-        log.error("Count of BeerRepo "+beerRepository.count());
+//        log.info("Count of BeerRepo "+beerRepository.count());
 
     }
 }
