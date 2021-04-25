@@ -70,6 +70,6 @@ class BeerControllerTest {
     }
 
     private BeerDto getValidBeerDto(){
-        return BeerDto.builder().beerName("My New Beer").beerStyle(BeerStyleEnum.valueOf("ALE")).price(BigDecimal.valueOf(2.33)).upc(BeerLoader.BEER_UPC_1).build();
+        return BeerDto.builder().beerName("My New Beer").beerStyle(BeerStyleEnum.valueOf("PALE_ALE")).price(BigDecimal.valueOf(2.33)).upc(BeerLoader.BEER_UPC_1).build();
     }
 }
