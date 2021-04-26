@@ -42,7 +42,11 @@ public class BeerInventoryServiceRestTemplateImpl implements BeerInventoryServic
     public Integer getOnHandInventory(UUID beerId) {
         log.debug("Calling getOnHandInventory");
 
-        ResponseEntity<List<BeerInventoryDto>> responseEntity = restTemplate.exchange(beerInventoryServiceHost + INVENTORY_PATH, HttpMethod.GET, null, new ParameterizedTypeReference<List<BeerInventoryDto>>() {
+        ResponseEntity<List<BeerInventoryDto>> responseEntity = restTemplate
+                .exchange(beerInventoryServiceHost + INVENTORY_PATH
+                        , HttpMethod.GET
+                        , null
+                        , new ParameterizedTypeReference<List<BeerInventoryDto>>() {
         },(Object)beerId);
 
         Integer onHand = Objects.requireNonNull(responseEntity.getBody())

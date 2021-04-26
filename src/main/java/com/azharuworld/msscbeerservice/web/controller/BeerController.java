@@ -31,9 +31,8 @@ public class BeerController {
                                                    @RequestParam(required = false) String beerName,
                                                    @RequestParam(required = false) BeerStyleEnum beerStyle,
                                                    @RequestParam(required = false) Boolean showInventoryOnHand) {
-        if(showInventoryOnHand == null){
-            showInventoryOnHand = false;
-        }
+
+        showInventoryOnHand = defaultShowInventoryOnHand(showInventoryOnHand);
 
         if(pageNumber == null || pageNumber < 0){
             pageNumber = DEFAULT_PAGE_NUMBER;
@@ -50,10 +49,18 @@ public class BeerController {
     @GetMapping("/{beerId}")
     public ResponseEntity<BeerDto> getBeer(@PathVariable("beerId") UUID beerId,
                                            @RequestParam(required = false) Boolean showInventoryOnHand) {
-        if(showInventoryOnHand == null){
-            showInventoryOnHand = false;
-        }
+        showInventoryOnHand = defaultShowInventoryOnHand(showInventoryOnHand);
         return new ResponseEntity<>(beerService.getById(beerId,showInventoryOnHand), HttpStatus.OK);
+    }
+
+
+
+    @GetMapping("/upc/{upc}")
+    public ResponseEntity<BeerDto> getBeerByUPC(@PathVariable("upc") String upc,
+                                                @RequestParam(required = false) Boolean showInventoryOnHand){
+        showInventoryOnHand = defaultShowInventoryOnHand(showInventoryOnHand);
+
+        return new ResponseEntity<>(beerService.getByUPC(upc,showInventoryOnHand),HttpStatus.OK);
     }
 
     @PostMapping
@@ -64,5 +71,12 @@ public class BeerController {
     @PutMapping("/{beerId}")
     public ResponseEntity updateBeerById(@PathVariable UUID beerId, @RequestBody @Validated BeerDto beerDto) {
         return new ResponseEntity(beerService.updateBeer(beerId, beerDto), HttpStatus.NO_CONTENT);
+    }
+
+    private Boolean defaultShowInventoryOnHand(Boolean showInventoryOnHand) {
+        if (showInventoryOnHand == null) {
+            showInventoryOnHand = false;
+        }
+        return showInventoryOnHand;
     }
 }
